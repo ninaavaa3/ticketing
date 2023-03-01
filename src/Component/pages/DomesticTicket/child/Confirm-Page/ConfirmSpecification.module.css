@@ -1,0 +1,17 @@
+.table{
+    width: 95%;
+    height: 40%;
+    font-family: iranyekan;
+    margin-top: 10px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+.table td , .table th{
+    border: 1px solid rgb(218, 218, 218);
+    padding: 8px;
+ 
+}
+.table tr:first-child{
+    height: 15px;
+    background-color: #f2f2f2;
+}

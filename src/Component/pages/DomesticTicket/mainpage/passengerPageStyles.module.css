@@ -1,0 +1,65 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f7f7f7;
+    height: auto;
+}
+.stepper{
+    position: sticky;
+    top: 0px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0px 2px 3px #dadada;
+    background-color: white; 
+}
+.ticketInfo{
+    width: 80%;
+    height: 200px;
+    border-radius: 5px;
+}
+.passengersInfo
+{
+    width: 80%;
+    height: auto;
+    border: 1px solid rgb(194, 194, 194);
+    border-radius: 5px;
+    margin-top: 13px;
+    background-color: white;
+}
+.passengersInfoHeader{
+    width: 100%;
+    height: 80px;
+    
+    display: flex;
+    flex-direction: row;
+    
+}
+.passengersInfoIcon{
+    font-size: 25px;
+    margin-right: 20px;
+    margin-top: 25px;
+}
+.passengersInfoFooter{
+    width: 100%;
+    height: 100px;
+}
+
+
+.sendEmail{
+    width: 80%;
+    height: 100px;
+    background-color: white;
+    margin-top: 15px;
+  
+}
+.buttonContainer{
+    width: 80%;
+    height: 100%;
+    background-color: white;
+    margin-top: 15px;
+   
+}

@@ -1,0 +1,198 @@
+.container{
+    width: 100%;
+    height: auto;
+    background-color:#f6f6f6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+ 
+}
+.stepper{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 0;
+    margin: 0;
+    position: sticky;
+    top: 0;
+}
+.ticketInformation{
+    width: 70%;
+    height: 600px;
+    background-color: white;
+    margin-top: 20px;
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 10px;
+}
+.ticketInformationHeader{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+.ticketInformationIcon{
+    font-size: 28px;
+    margin-right: 20px;
+   
+   
+}
+.ticketInformationHeader h3{
+    margin-right: 20px;
+    margin-top: 0;
+   
+    
+}
+.ticketInformationFooter{
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-direction: row;
+}
+.ticketWent{
+    width: 50%;
+    height: 100%;
+}
+.ticketWentHeader{
+    width: 100%;
+    height: 30px;
+    
+}
+.returnTicket{
+    width: 50%;
+    height: 100%;
+}
+.returnTicketHeader{
+    width: 100%;
+    height: 30px;
+}
+.specificationOfPassengers{
+    width: 70%;
+    height: 250px;
+    background-color: white;
+    margin-top: 20px;
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 10px;
+}
+.specificationHeader{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+.specificationHeaderIcon{
+    font-size: 24px;
+    margin-right: 20px;
+    
+    
+}
+.specificationHeader h3{
+    margin-right: 20px;
+   
+    
+}
+.specificationHeaderButton{
+    width: 130px;
+    height: 40px;
+    border: 2px solid #0077db;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    font-family: iranyekan;
+    color: #0077db;
+    cursor: pointer;
+}
+
+.travelMessage{
+    width: 70%;
+    height: 200px;
+    background-color: white;
+    margin-top: 20px;
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 10px;
+}
+.travelMessageHeader{
+    width: 100%;
+    height: 60px;
+    
+    display: flex;
+    align-items: center;
+    font-family: iranyekan;
+}
+.travelMessageIcon{
+    font-size: 30px;
+    margin-right: 20px;
+}
+.travelMessageHeader h6{
+    margin-right: 20px;
+    font-size: 20px;
+}
+.travelMessageInfo{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    font-family: iranyekan;
+}
+
+.discountCode{
+    display: none;
+    width: 70%;
+    height: 200px;
+    background-color: white;
+    margin-top: 20px;
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 10px;  
+}
+.onlinePayment{
+    width: 70%;
+    height: 200px;
+    background-color: white;
+    margin-top: 20px;
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.onlinePaymentHeader{
+    width: 60%;
+    height: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.onlinePaymentFooter{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.onlinePaymentFooter button{
+    border: none;
+    width: 30%;
+    height: 50%;
+    border-radius: 5px;
+    background-color: #0077db;
+    color: white;
+    font-family: iranyekan;
+    font-size: 20px;
+    cursor: pointer;
+}
+.onlinePaymentFooter button:hover{
+    background-color: #0065b7;
+}
+@media only screen and (max-width:700px) {
+    .ticketInformation{
+        width: 100%;
+    }
+}
