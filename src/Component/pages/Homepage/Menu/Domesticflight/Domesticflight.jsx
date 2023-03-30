@@ -1,6 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router";
-import {useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import '@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css';
 // import DatePicker from '@hassanmojab/react-modern-calendar-datepicker';
 import classes from "./Domesticflight.module.css";
@@ -18,11 +18,21 @@ import Select from "@mui/material/Select";
 
 
 const Domesticflight = (props) => {
+    // const [data,setData]=useState([]);
     const [selectedDayback, setSelectedDayback] = useState(null);
     const [selectedDaygo, setSelectedDaygo] = useState(null);
     const [origin, setOrigin] = useState("");
     const [destination, setDestination] = useState("");
-    
+
+    useEffect(() => {
+        const saveddatatoObject = JSON.parse(localStorage.getItem("datakey"))
+        setDestination(saveddatatoObject.destination);
+        setOrigin(saveddatatoObject.origin);
+        console.log(saveddatatoObject)
+        setSelectedDaygo(saveddatatoObject.selectedDaygo);
+        setSelectedDayback(saveddatatoObject.selectedDayback);
+
+    }, [])
 
     const navigate = useNavigate();
     const minimumDate = {
@@ -41,7 +51,7 @@ const Domesticflight = (props) => {
     // };
 
 
-   
+
 
     const orgHandler = (e) => {
         setOrigin(e.target.value);
@@ -50,36 +60,38 @@ const Domesticflight = (props) => {
     const destHandler = (e) => {
         setDestination(e.target.value);
     }
-    
+
     const dispatch = useDispatch();
     const numOfPasInputRef = useRef();
-    
 
 
-    const handleSubmit = (e) =>{
+
+    const handleSubmit = (e) => {
         e.preventDefault();
         let gotime = `${selectedDaygo.year}/${selectedDaygo.month}/${selectedDaygo.day}`;
         let backtime = `${selectedDayback.year}/${selectedDayback.month}/${selectedDayback.day}`;
-        const filteredsamplegoticket = DomesticFilghtData.filter(data => data.org === origin && data.dest === destination  && data.goDate === gotime);
+        const filteredsamplegoticket = DomesticFilghtData.filter(data => data.org === origin && data.dest === destination && data.goDate === gotime);
         const filteredsamplegoticket2 = DomesticFilghtData.filter(data => data.org === origin && data.dest === destination);
         const filteredsamplebackticket = DomesticFilghtData.filter(data => data.org === destination && data.dest === origin && data.goDate === backtime);
-
+        const saveddata = { origin: origin, destination: destination, selectedDaygo: selectedDaygo, selectedDayback: selectedDayback };
+        localStorage.setItem("datakey", JSON.stringify(saveddata));
 
         navigate(
             '/flight',
             { state: { datagoticket: filteredsamplegoticket, datagoticket2: filteredsamplegoticket2, databackticket: filteredsamplebackticket } }
         )
+
         //----------------- for get number of passengers -----------
         const numOfPassInputValue = numOfPasInputRef.current.value;
         let num = [];
-        for(let i = 0 ; i < numOfPassInputValue ; i++ ){
+        for (let i = 0; i < numOfPassInputValue; i++) {
             num.push(i);
-          
+
         }
-        dispatch({type:e.target.name,payload:num})
-            
+        dispatch({ type: e.target.name, payload: num })
+
     }
-   
+
     return (
         <div className={classes.container}>
             <div className={classes.header}>
@@ -130,31 +142,31 @@ const Domesticflight = (props) => {
                     </FormControl>
                     <div className={classes.dateContainer}>
                         <DtPicker
-                            value={selectedDaygo}
+                            //value={selectedDaygo}
+                            initValue={selectedDaygo}
                             onChange={setSelectedDaygo}
                             type='single'
                             local='fa'
                             showWeekend
                             placeholder='تاریخ رفت'
                             inputClass={classes.dateInput}
-                            autoClose={false}
+                            autoClose={true}
                             minDate={minimumDate}
                             headerClass={classes.dateHeader}
                             daysClass={classes.daysDatePicker}
-
-
                         />
                     </div>
                     <div className={classes.dateContainer}>
                         <DtPicker
-                            value={selectedDayback}
+                            //value={selectedDayback}
+                            initValue={selectedDayback}
                             onChange={setSelectedDayback}
                             type='single'
                             local='fa'
                             showWeekend
                             placeholder='تاریخ برگشت'
                             inputClass={classes.dateInput}
-                            autoClose={false}
+                            autoClose={true}
                             minDate={minimumDate}
                             headerClass={classes.dateHeader}
                             daysClass={classes.daysDatePicker}
@@ -165,17 +177,17 @@ const Domesticflight = (props) => {
 
 
                     <input
-                        
+
                         ref={numOfPasInputRef}
                         className={classes.numOfPas}
                         type="number"
                         placeholder='تعداد مسافران' />
 
                     <button
-                        
+
                         className={classes.searchBtn}
                         type="submit"
-                        >
+                    >
                         جستجوی بلیط
                     </button>
 
