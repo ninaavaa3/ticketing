@@ -18,20 +18,24 @@ import Select from "@mui/material/Select";
 
 
 const Domesticflight = (props) => {
-    // const [data,setData]=useState([]);
+    const [isdisable, setIsdisable] = useState(true);
     const [selectedDayback, setSelectedDayback] = useState(null);
     const [selectedDaygo, setSelectedDaygo] = useState(null);
     const [origin, setOrigin] = useState("");
     const [destination, setDestination] = useState("");
+    const validitychang = () => {
+        setIsdisable(() => !isdisable)
+    }
 
     useEffect(() => {
         const saveddatatoObject = JSON.parse(localStorage.getItem("datakey"))
-        setDestination(saveddatatoObject.destination);
-        setOrigin(saveddatatoObject.origin);
-        console.log(saveddatatoObject)
-        setSelectedDaygo(saveddatatoObject.selectedDaygo);
-        setSelectedDayback(saveddatatoObject.selectedDayback);
 
+        if (saveddatatoObject) {
+            setDestination(saveddatatoObject.destination);
+            setOrigin(saveddatatoObject.origin);
+            setSelectedDaygo(saveddatatoObject.selectedDaygo);
+            setSelectedDayback(saveddatatoObject.selectedDayback);
+        }
     }, [])
 
     const navigate = useNavigate();
@@ -40,6 +44,11 @@ const Domesticflight = (props) => {
         month: Number(moment().locale('fa').format('MM')),
         day: Number(moment().locale('fa').format('DD'))
     };
+
+
+
+
+
 
     const maxDate = new Date();
     maxDate.setDate(maxDate.getDate() + 14)
@@ -92,10 +101,11 @@ const Domesticflight = (props) => {
 
     }
 
+
     return (
         <div className={classes.container}>
             <div className={classes.header}>
-                <select>
+                <select onChange={validitychang}>
                     <option>یک طرفه</option>
                     <option> رفت و برگشت</option>
                 </select>
@@ -142,7 +152,7 @@ const Domesticflight = (props) => {
                     </FormControl>
                     <div className={classes.dateContainer}>
                         <DtPicker
-                            //value={selectedDaygo}
+                            // value={selectedDaygo}
                             initValue={selectedDaygo}
                             onChange={setSelectedDaygo}
                             type='single'
@@ -158,7 +168,7 @@ const Domesticflight = (props) => {
                     </div>
                     <div className={classes.dateContainer}>
                         <DtPicker
-                            //value={selectedDayback}
+                            // value={selectedDayback}
                             initValue={selectedDayback}
                             onChange={setSelectedDayback}
                             type='single'
@@ -170,6 +180,7 @@ const Domesticflight = (props) => {
                             minDate={minimumDate}
                             headerClass={classes.dateHeader}
                             daysClass={classes.daysDatePicker}
+                            isDisabled={isdisable}
 
                         />
                     </div>
