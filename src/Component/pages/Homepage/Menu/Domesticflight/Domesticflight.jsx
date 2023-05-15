@@ -7,7 +7,7 @@ import classes from "./Domesticflight.module.css";
 import moment from 'jalali-moment';
 // import Karoon from "../../../../assets/images/Karoon.png";
 // import Kaspian from "../../../../assets/images/Kaspian.png";
-import DomesticFilghtData from "./DomesticFlightData";
+// import DomesticFilghtData from "./DomesticFlightData";
 import DtPicker from 'react-calendar-datetime-picker';
 import 'react-calendar-datetime-picker/dist/index.css';
 //---------- material ui import -----------------
@@ -18,18 +18,17 @@ import Select from "@mui/material/Select";
 
 
 const Domesticflight = (props) => {
-    const [isdisable, setIsdisable] = useState(true);
+    
     const [selectedDayback, setSelectedDayback] = useState(null);
     const [selectedDaygo, setSelectedDaygo] = useState(null);
     const [origin, setOrigin] = useState("");
     const [destination, setDestination] = useState("");
-    const validitychang = () => {
-        setIsdisable(() => !isdisable)
-    }
+
+    
 
     useEffect(() => {
         const saveddatatoObject = JSON.parse(localStorage.getItem("datakey"))
-
+        // console.log(JSON.stringify(DomesticFilghtData));
         if (saveddatatoObject) {
             setDestination(saveddatatoObject.destination);
             setOrigin(saveddatatoObject.origin);
@@ -75,37 +74,48 @@ const Domesticflight = (props) => {
 
 
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        let gotime = `${selectedDaygo.year}/${selectedDaygo.month}/${selectedDaygo.day}`;
-        let backtime = `${selectedDayback.year}/${selectedDayback.month}/${selectedDayback.day}`;
-        const filteredsamplegoticket = DomesticFilghtData.filter(data => data.org === origin && data.dest === destination && data.goDate === gotime);
-        const filteredsamplegoticket2 = DomesticFilghtData.filter(data => data.org === origin && data.dest === destination);
-        const filteredsamplebackticket = DomesticFilghtData.filter(data => data.org === destination && data.dest === origin && data.goDate === backtime);
-        const saveddata = { origin: origin, destination: destination, selectedDaygo: selectedDaygo, selectedDayback: selectedDayback };
-        localStorage.setItem("datakey", JSON.stringify(saveddata));
+     async function handleSubmit(e) {
+         e.preventDefault();
+       
+         try { const response = await fetch("https://dataticket-79a2a-default-rtdb.firebaseio.com/DomesticFilghtData.json");
+            if (response.status!==200) {
+                throw new Error("something went wrong!");
+            }
+            const DomesticFilghtData = await response.json();
+           
+             console.log(DomesticFilghtData);
+            let gotime = `${selectedDaygo.year}/${selectedDaygo.month}/${selectedDaygo.day}`;
+            let backtime = `${selectedDayback.year}/${selectedDayback.month}/${selectedDayback.day}`;
+            const filteredsamplegoticket = DomesticFilghtData.filter(data => data.org === origin && data.dest === destination && data.goDate === gotime);
+            const filteredsamplegoticket2 = DomesticFilghtData.filter(data => data.org === origin && data.dest === destination);
+            const filteredsamplebackticket = DomesticFilghtData.filter(data => data.org === destination && data.dest === origin && data.goDate === backtime);
+            const saveddata = { origin: origin, destination: destination, selectedDaygo: selectedDaygo, selectedDayback: selectedDayback };
+            localStorage.setItem("datakey", JSON.stringify(saveddata));
 
-        navigate(
-            '/flight',
-            { state: { datagoticket: filteredsamplegoticket, datagoticket2: filteredsamplegoticket2, databackticket: filteredsamplebackticket } }
-        )
+            navigate(
+                '/flight',
+                { state: { datagoticket: filteredsamplegoticket, datagoticket2: filteredsamplegoticket2, databackticket: filteredsamplebackticket } }
+            )
 
-        //----------------- for get number of passengers -----------
-        const numOfPassInputValue = numOfPasInputRef.current.value;
-        let num = [];
-        for (let i = 0; i < numOfPassInputValue; i++) {
-            num.push(i);
+            //----------------- for get number of passengers -----------
+            const numOfPassInputValue = numOfPasInputRef.current.value;
+            let num = [];
+            for (let i = 0; i < numOfPassInputValue; i++) {
+                num.push(i);
 
+            }
+            dispatch({ type: e.target.name, payload: num })
+        } catch (error) {
+            console.log(error.message);
+            alert(error.message)
         }
-        dispatch({ type: e.target.name, payload: num })
-
     }
 
 
     return (
         <div className={classes.container}>
             <div className={classes.header}>
-                <select onChange={validitychang}>
+                <select >
                     <option>یک طرفه</option>
                     <option> رفت و برگشت</option>
                 </select>
@@ -180,7 +190,7 @@ const Domesticflight = (props) => {
                             minDate={minimumDate}
                             headerClass={classes.dateHeader}
                             daysClass={classes.daysDatePicker}
-                            isDisabled={isdisable}
+                            
 
                         />
                     </div>

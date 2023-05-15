@@ -82,6 +82,7 @@ const SimpleAccordion = (props) => {
                   </label>
                 </div>
               )
+              
             })}
 
 
