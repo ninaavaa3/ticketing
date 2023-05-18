@@ -29,19 +29,19 @@ const Domesticflight = (props) => {
     const [destination, setDestination] = useState("");
 
     // console.log(!userdata)
-   async function savedata(){
-    const response = await fetch("https://dataticket-79a2a-default-rtdb.firebaseio.com/DomesticFilghtDatas.json", {
-        method: "POST",
-        body: JSON.stringify(DomesticFilghtData),
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-    const data = await response.json();
-    console.log(data);
-    console.log(response.status);
-    }
-    savedata();
+//    async function savedata(){
+//     const response = await fetch("https://dataticket-79a2a-default-rtdb.firebaseio.com/DomesticFilghtDatas.json", {
+//         method: "POST",
+//         body: JSON.stringify(DomesticFilghtData),
+//         headers: {
+//             "Content-Type": "application/json"
+//         }
+//     })
+//     const data = await response.json();
+//     console.log(data);
+//     console.log(response.status);
+//     }
+//     savedata();
 
     useEffect(() => {
         const saveddatatoObject = JSON.parse(localStorage.getItem("datakey"))
