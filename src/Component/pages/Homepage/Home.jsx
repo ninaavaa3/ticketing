@@ -41,11 +41,11 @@ const images = [
 const Container = () => {
     const imgBackground = useSelector(state => state.imgBackground);
     const value = useSelector(state => state.value);
-   
-     const dispatch = useDispatch();
-    useEffect(()=>{
-       alert("برای رفتن به صفحه بعد در فیلدهای پایین شهر مبدا را تهران شهرمقصد را مشهد تاریخ رفت را30/3وتاریخ برگشت را 20/4 وارد کنید ")
-    },[])
+
+    const dispatch = useDispatch();
+    useEffect(() => {
+        alert("برای رفتن به صفحه بعد در فیلدهای پایین شهر مبدا را تهران شهرمقصد را مشهد تاریخ رفت را 30/3 وتاریخ برگشت را 20/4 وارد کنید لازم به ذکر است که پنجاه درصد پروژه هنوز تکمیل نیست." )
+    }, [])
     //--------------------------------------------
     const handleClick = (e) => {
         const filterImage = images.filter(data => data.title === e.target.name)
@@ -65,16 +65,16 @@ const Container = () => {
         console.log(`newValue:${newValue}`);
         console.log(`value:${value}`);
     };
-    
+
     // document..onload(console.log("hlkkvl;"))
     //----------------------------------------------
     return (
-        <div  className={styles.MainContainer}>
+        <div className={styles.MainContainer}>
             <div className={styles.MainContainerHeader}>
                 <div className={styles.container}>
                     <div className={styles.imageContainer}>
                         <img src={imgBackground} alt={1}></img>
-                       
+
                     </div>
                     {/*------------- for mobile resolution ------------*/}
                     <div className={styles.mobileTabsContainer}>
@@ -125,7 +125,7 @@ const Container = () => {
                                 }, direction: 'ltr'
                             }}
                         >
-                            
+
                             <Tab sx={{ fontSize: '15px', py: 0, px: 6, m: 1, fontFamily: 'iranyekan', fontWeight: 'bolder' }} id='0' icon={<GiVillage />} label="ویلا و اقامتگاه" name="villa" />
                             <Tab sx={{ fontSize: '15px', py: 0, px: 6, m: 1, fontFamily: 'iranyekan', fontWeight: 'bolder' }} id='1' icon={<FaHotel />} label="هتل" name="hotel" />
                             <Tab sx={{ fontSize: '15px', py: 0, px: 6, m: 1, fontFamily: 'iranyekan', fontWeight: 'bolder' }} id='2' icon={<MdLuggage />} label="تور" name="tour" />
@@ -133,7 +133,7 @@ const Container = () => {
                             <Tab sx={{ fontSize: '15px', py: 0, px: 6, m: 1, fontFamily: 'iranyekan', fontWeight: 'bolder' }} id='4' icon={<IoTrain />} label="قطار" name="train" />
                             <Tab sx={{ fontSize: '15px', py: 0, px: 6, m: 1, fontFamily: 'iranyekan', fontWeight: 'bolder' }} id='5' icon={<ImAirplane />} label="پرواز خارجی" name="internationalflight" ></Tab>
                             <Tab sx={{ fontSize: '15px', py: 0, px: 6, m: 1, fontFamily: 'iranyekan', fontWeight: 'bolder' }} id='6' icon={<GiCommercialAirplane />} label="پرواز داخلی" name="Domesticflight" ></Tab>
-                            
+
                         </Tabs>
 
                     </div>

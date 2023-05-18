@@ -15,7 +15,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { useLocation } from "react-router-dom";
+import DomesticFilghtData from "./DomesticFlightData"
 
 
 
@@ -29,6 +29,19 @@ const Domesticflight = (props) => {
     const [destination, setDestination] = useState("");
 
     // console.log(!userdata)
+   async function savedata(){
+    const response = await fetch("https://dataticket-79a2a-default-rtdb.firebaseio.com/DomesticFilghtDatas.json", {
+        method: "POST",
+        body: JSON.stringify(DomesticFilghtData),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    const data = await response.json();
+    console.log(data);
+    console.log(response.status);
+    }
+    savedata();
 
     useEffect(() => {
         const saveddatatoObject = JSON.parse(localStorage.getItem("datakey"))
@@ -39,6 +52,8 @@ const Domesticflight = (props) => {
             setSelectedDaygo(saveddatatoObject.selectedDaygo);
             setSelectedDayback(saveddatatoObject.selectedDayback);
         }
+        
+        // localStorage.setItem("maindata",JSON.stringify(DomesticFilghtData));
     }, [])
 
     const navigate = useNavigate();
@@ -81,7 +96,7 @@ const Domesticflight = (props) => {
      async function handleSubmit(e) {
          e.preventDefault();
        
-         try { const response = await fetch("https://dataticket-79a2a-default-rtdb.firebaseio.com/DomesticFilghtData.json");
+         try { const response = await fetch("https://dataticket-79a2a-default-rtdb.firebaseio.com/DomesticFilghtDatas/-NVjGe5U9x6wrE5K_NqS.json");
             if (response.status!==200) {
                 throw new Error("something went wrong!");
             }
