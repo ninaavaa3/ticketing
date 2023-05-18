@@ -1,0 +1,55 @@
+.container{
+    display: flex;
+    margin-top: 80px;
+    justify-content: center;
+    font-family: iranyekan;
+}
+
+
+.formStyle {
+    border: 0.5px solid rgb(200, 200, 200);
+    border-radius: 5px;
+border-top:1px solid rgb(239, 208, 67);
+border-left:1px solid rgb(239, 208, 67);
+}
+
+.inpStyle {
+    border: none;
+    border-bottom: 1px solid rgb(228, 185, 68);
+    background-color: rgb(250, 236, 164);
+    font-family: iranyekan;
+   
+    
+}
+
+input[type=text].inpStyle:focus {
+    outline: none;
+    background-color: rgb(248, 190, 31);
+
+}
+
+input[type=password].inpStyle:focus {
+    outline: none;
+    background-color: rgb(248, 190, 31);
+}
+
+input[type=email].inpStyle:focus {
+    outline: none;
+    background-color:  rgb(248, 190, 31);
+
+}
+.btnStyle{
+    background-color: rgb(239, 208, 67);
+    width: 100%;
+    border-color:rgb(239, 208, 67) ;
+    color:rgb(78, 78, 81);
+    font-family: iranyekan;
+}
+button.btnStyle:hover{
+    background-color: rgb(231, 194, 30) ;
+    outline: none;
+}
+.font{
+    font-family:iranyekan;
+    
+}

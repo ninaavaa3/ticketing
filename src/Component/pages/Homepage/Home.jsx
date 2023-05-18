@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './Home.module.css';
 import Domestic from "./Menu/Domesticflight/Domesticflight";
@@ -27,6 +27,7 @@ import { FaHotel } from "react-icons/fa";
 import { GiVillage } from "react-icons/gi";
 
 
+
 const images = [
     { id: 1, title: "Domesticflight", image: Domesticflight },
     { id: 2, title: "internationalflight", image: internationalflight },
@@ -40,8 +41,11 @@ const images = [
 const Container = () => {
     const imgBackground = useSelector(state => state.imgBackground);
     const value = useSelector(state => state.value);
-    /*const [value, setValue] = React.useState(0);*/
-    const dispatch = useDispatch()
+   
+     const dispatch = useDispatch();
+    useEffect(()=>{
+       alert("برای رفتن به صفحه بعد در فیلدهای پایین شهر مبدا را تهران شهرمقصد را مشهد تاریخ رفت را30/3وتاریخ برگشت را 20/4 وارد کنید ")
+    },[])
     //--------------------------------------------
     const handleClick = (e) => {
         const filterImage = images.filter(data => data.title === e.target.name)
@@ -61,15 +65,16 @@ const Container = () => {
         console.log(`newValue:${newValue}`);
         console.log(`value:${value}`);
     };
+    
+    // document..onload(console.log("hlkkvl;"))
     //----------------------------------------------
     return (
-        <div className={styles.MainContainer}>
-
+        <div  className={styles.MainContainer}>
             <div className={styles.MainContainerHeader}>
                 <div className={styles.container}>
                     <div className={styles.imageContainer}>
                         <img src={imgBackground} alt={1}></img>
-
+                       
                     </div>
                     {/*------------- for mobile resolution ------------*/}
                     <div className={styles.mobileTabsContainer}>

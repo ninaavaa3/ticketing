@@ -15,16 +15,20 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { useLocation } from "react-router-dom";
+
 
 
 const Domesticflight = (props) => {
-    
+    // const location =useLocation();
+    // console.log(location.state);
+    // const[userdata,setUserdata]=useState(location.state); 
     const [selectedDayback, setSelectedDayback] = useState(null);
     const [selectedDaygo, setSelectedDaygo] = useState(null);
     const [origin, setOrigin] = useState("");
     const [destination, setDestination] = useState("");
 
-    
+    // console.log(!userdata)
 
     useEffect(() => {
         const saveddatatoObject = JSON.parse(localStorage.getItem("datakey"))

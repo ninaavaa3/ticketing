@@ -5,6 +5,7 @@ import Domesticflight from "../assets/images/Domesticflight.png";
 
 
 const initialstate = {
+    showUsername:null,
     isAddpassenger: false,
     value: 0,
     numbersOfPassengers:[],
@@ -272,6 +273,11 @@ const Reduser = (state = initialstate, action) => {
                 ...state,
                 numbersOfPassengers:action.payload
             }    
+            case 'ShowUsername':
+                return{
+                    ...state,
+                   showUsername:action.payload
+                } 
         default:
             return state
     }
